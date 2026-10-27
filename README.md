@@ -10,6 +10,7 @@ A lightweight, standalone viewer for opening PureRef `.pur` boards in your brows
 - Light and dark interface themes. Switching themes never inverts the board, images, or notes.
 - Floating **Board controls** in the bottom-left and **Zoom out**, **Zoom in**, and **Fit** in the bottom-right.
 - Board and image-gallery views, plus individual image previews.
+- PureRef 2.x group backgrounds and supported freehand drawings, including their colors, transparency, and placement.
 - Download individual images, all embedded images as a ZIP, or the board as PNG or PDF when its layout is available.
 - Local file processing: your `.pur` file is not uploaded to a server.
 - A single HTML file with the viewer's JavaScript bundled inside, suitable for offline use.
@@ -36,7 +37,8 @@ Download [`index.html`](https://github.com/Gregrioum/pureref_webvierer/blob/main
 
 - Supports PureRef 2.x boards. Support for PureRef 1.x is newer and may be less complete.
 - This is a viewer and exporter; it does not edit or save changes to `.pur` boards.
-- Drawings and group frames are not displayed. Notes are shown when their board layout can be read; some files may offer an images-only view.
+- Group backgrounds and standard solid-line drawing records are supported in the viewer and PNG/PDF exports. This support was checked with a PureRef 2.1.3 board. Other stroke formats or styles may still be unsupported; the viewer reports drawings it cannot decode.
+- Notes are shown when their board layout can be read; some files may offer an images-only view. Group bounds are reconstructed from their contents, so text wrapping and frame spacing may differ slightly from the desktop app.
 - Images that are not embedded in the `.pur` file cannot be displayed or exported.
 - Large boards can use substantial memory. Board exports may reduce image resolution to stay within device limits. ZIP exports are limited to 4 GB and 65,535 files.
 - If a file cannot be opened, make sure it is fully downloaded to your device. If it opens in PureRef, try saving a fresh copy there and reopening it here.
@@ -44,5 +46,7 @@ Download [`index.html`](https://github.com/Gregrioum/pureref_webvierer/blob/main
 ## Project details
 
 The app is served through GitHub Pages from `index.html` on the `main` branch. No build step or backend is required. The repository currently contains the standalone bundled app, rather than a separate source/build project.
+
+Run the drawing and group regression checks with `node tests/shapes.test.cjs` (Node.js required).
 
 Found a problem? [Open an issue](https://github.com/Gregrioum/pureref_webvierer/issues) with your browser, device, PureRef version, and the steps to reproduce it. Only share a sample board if you are comfortable making its contents public.
